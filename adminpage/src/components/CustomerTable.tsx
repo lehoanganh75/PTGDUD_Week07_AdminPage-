@@ -127,27 +127,43 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
       </div>
 
       {showAddForm && (
-        <div className="fixed inset-0 bg-gray-70 bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
-            <h3 className="text-xl font-bold mb-4">Add New Customer</h3>
-            <div className="space-y-4">{/* Add customer form fields */}</div>
-            <div className="mt-6 flex justify-end space-x-3">
-              <button
-                onClick={() => setShowAddForm(false)}
-                className="px-4 py-2 border rounded hover:bg-gray-100"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleAddCustomer}
-                className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-500"
-              >
-                Add Customer
-              </button>
-            </div>
+  <div className="fixed inset-0 bg-gray-70 bg-opacity-40 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg w-full max-w-md">
+      <h3 className="text-xl font-bold mb-4">Add New Customer</h3>
+      <div className="space-y-4">
+        {Object.entries(newCustomer).map(([key, value]) => (
+          <div key={key}>
+            <label className="block text-sm font-medium text-gray-700">
+              {key.charAt(0).toUpperCase() + key.slice(1)}
+            </label>
+            <input
+              type={key === "orderDate" ? "date" : "text"}
+              name={key}
+              value={value}
+              onChange={handleNewCustomerChange}
+              className="mt-1 block w-full border rounded px-3 py-2"
+            />
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+      <div className="mt-6 flex justify-end space-x-3">
+        <button
+          onClick={() => setShowAddForm(false)}
+          className="px-4 py-2 border rounded hover:bg-gray-100"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleAddCustomer}
+          className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-500"
+        >
+          Add Customer
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* Edit Modal */}
       {showEditModal && (
