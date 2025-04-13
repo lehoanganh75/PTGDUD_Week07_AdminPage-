@@ -67,8 +67,9 @@ const Content = ({ className }) => {
           </div>
         ))}
       </div>
-     <CustomerTable />
+     <CustomerTable page={page} setPage={setPage} rowsPerPage={rowsPerPage}/>
     </div>
+
   );
 };
 
