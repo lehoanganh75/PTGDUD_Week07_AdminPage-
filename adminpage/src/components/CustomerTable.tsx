@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import customerData from "../data/data.json";
+import React, { useState } from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import customerData from '../data/data.json';
 
 const CustomerTable = ({ page, setPage, rowsPerPage }) => {
   const [selectedCustomers, setSelectedCustomers] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [customers, setCustomers] = useState(customerData.customers);
   const [editFormData, setEditFormData] = useState({
-    customer: "",
-    company: "",
-    orderValue: "",
-    orderDate: "",
-    status: "New",
+    customer: '',
+    company: '',
+    orderValue: '',
+    orderDate: '',
+    status: 'New'
   });
   const [showAddForm, setShowAddForm] = useState(false);
   const [newCustomer, setNewCustomer] = useState({
-    customer: "",
-    company: "",
-    orderValue: "",
-    orderDate: "",
-    status: "New",
+    customer: '',
+    company: '',
+    orderValue: '',
+    orderDate: '',
+    status: 'New'
   });
 
   const handleChangePage = (event, newPage) => {
@@ -29,9 +29,9 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
   };
 
   const handleSelectCustomer = (customerId) => {
-    setSelectedCustomers((prev) =>
+    setSelectedCustomers(prev => 
       prev.includes(customerId)
-        ? prev.filter((id) => id !== customerId)
+        ? prev.filter(id => id !== customerId)
         : [...prev, customerId]
     );
   };
@@ -43,7 +43,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
       company: customer.company,
       orderValue: customer.orderValue,
       orderDate: customer.orderDate,
-      status: customer.status,
+      status: customer.status
     });
   };
 
@@ -51,7 +51,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
     const { name, value } = e.target;
     setEditFormData({
       ...editFormData,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -59,7 +59,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
     const { name, value } = e.target;
     setNewCustomer({
       ...newCustomer,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -71,7 +71,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
       company: editFormData.company,
       orderValue: editFormData.orderValue,
       orderDate: editFormData.orderDate,
-      status: editFormData.status,
+      status: editFormData.status
     };
 
     setCustomers(updatedCustomers);
@@ -79,20 +79,17 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
   };
 
   const handleAddCustomer = () => {
-    const updatedCustomers = [
-      ...customers,
-      {
-        ...newCustomer,
-        id: customers.length + 1,
-      },
-    ];
+    const updatedCustomers = [...customers, {
+      ...newCustomer,
+      id: customers.length + 1 
+    }];
     setCustomers(updatedCustomers);
     setNewCustomer({
-      customer: "",
-      company: "",
-      orderValue: "",
-      orderDate: "",
-      status: "New",
+      customer: '',
+      company: '',
+      orderValue: '',
+      orderDate: '',
+      status: 'New'
     });
     setShowAddForm(false);
   };
@@ -109,15 +106,11 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
           <img src="./image/Folder.png" className="mr-2" alt="Report Icon" />
           <h2 className="font-bold text-lg">Detailed report</h2>
         </div>
-        <div className="flex">
-          <img
-            src="./image/Move up.png"
-            alt=""
-            className="h-[25px] absolute mt-4 ml-1"
-          />
-          <button
+        <div className='flex'>
+          <img src="./image/Move up.png" alt="" className='h-[25px] absolute mt-4 ml-1' />
+          <button 
             onClick={() => setShowAddForm(true)}
-            className="p-2 border rounded-lg border-pink-400 text-pink-400 px-8 hover:bg-pink-50"
+            className='p-2 border rounded-lg border-pink-400 text-pink-400 px-8 hover:bg-pink-50'
           >
             Add User
           </button>
@@ -130,9 +123,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
             <h3 className="text-xl font-bold mb-4">Add New Customer</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Customer Name
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Customer Name</label>
                 <input
                   type="text"
                   name="customer"
@@ -143,9 +134,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Company
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Company</label>
                 <input
                   type="text"
                   name="company"
@@ -156,9 +145,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Order Value
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Order Value</label>
                 <input
                   type="text"
                   name="orderValue"
@@ -169,9 +156,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Order Date
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Order Date</label>
                 <input
                   type="date"
                   name="orderDate"
@@ -181,9 +166,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Status
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Status</label>
                 <select
                   name="status"
                   value={newCustomer.status}
@@ -221,34 +204,19 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
               <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <input type="checkbox" />
               </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                CUSTOMER NAME
-              </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                COMPANY
-              </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                ORDER VALUE
-              </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                ORDER DATE
-              </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                STATUS
-              </th>
-              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                
-              </th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CUSTOMER NAME</th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">COMPANY</th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ORDER VALUE</th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ORDER DATE</th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">STATUS</th>
+              <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ACTIONS</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {paginatedCustomers.map((customer, index) => {
               const absoluteIndex = (page - 1) * rowsPerPage + index;
               return (
-                <tr
-                  key={absoluteIndex}
-                  className="hover:bg-gray-50 transition-colors"
-                >
+                <tr key={absoluteIndex} className="hover:bg-gray-50 transition-colors">
                   <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-500">
                     <input
                       type="checkbox"
@@ -258,8 +226,8 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-sm font-medium text-gray-900">
                     {editingId === absoluteIndex ? (
-                      <input
-                        type="text"
+                      <input 
+                        type="text" 
                         name="customer"
                         value={editFormData.customer}
                         onChange={handleEditFormChange}
@@ -271,8 +239,8 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-500">
                     {editingId === absoluteIndex ? (
-                      <input
-                        type="text"
+                      <input 
+                        type="text" 
                         name="company"
                         value={editFormData.company}
                         onChange={handleEditFormChange}
@@ -284,8 +252,8 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-500 font-medium">
                     {editingId === absoluteIndex ? (
-                      <input
-                        type="text"
+                      <input 
+                        type="text" 
                         name="orderValue"
                         value={editFormData.orderValue}
                         onChange={handleEditFormChange}
@@ -297,8 +265,8 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-500">
                     {editingId === absoluteIndex ? (
-                      <input
-                        type="date"
+                      <input 
+                        type="date" 
                         name="orderDate"
                         value={editFormData.orderDate}
                         onChange={handleEditFormChange}
@@ -310,7 +278,7 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
                     {editingId === absoluteIndex ? (
-                      <select
+                      <select 
                         name="status"
                         value={editFormData.status}
                         onChange={handleEditFormChange}
@@ -321,29 +289,25 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
                         <option value="Completed">Completed</option>
                       </select>
                     ) : (
-                      <span
-                        className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          customer.status === "New"
-                            ? "bg-blue-100 text-blue-800"
-                            : customer.status === "In-progress"
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-green-100 text-green-800"
-                        }`}
-                      >
+                      <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        customer.status === 'New' ? 'bg-blue-100 text-blue-800' :
+                        customer.status === 'In-progress' ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-green-100 text-green-800'
+                      }`}>
                         {customer.status}
                       </span>
                     )}
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-500">
                     {editingId === absoluteIndex ? (
-                      <button
+                      <button 
                         onClick={() => handleSave(absoluteIndex)}
                         className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
                       >
                         Save
                       </button>
                     ) : (
-                      <button
+                      <button 
                         onClick={() => handleEdit(customer, absoluteIndex)}
                         className="px-3 py-1 hover:cursor-pointer"
                       >
@@ -356,17 +320,23 @@ const CustomerTable = ({ page, setPage, rowsPerPage }) => {
             })}
           </tbody>
         </table>
-
+        
         <div className="flex items-center justify-between mt-4">
           <div className="text-sm text-gray-500">
-            Showing{" "}
-            <span className="font-medium">{(page - 1) * rowsPerPage + 1}</span>{" "}
-            to{" "}
-            <span className="font-medium">
-              {Math.min(page * rowsPerPage, customers.length)}
-            </span>{" "}
-            of <span className="font-medium">{customers.length}</span> results
+            Showing <span className="font-medium">{(page - 1) * rowsPerPage + 1}</span> to{' '}
+            <span className="font-medium">{Math.min(page * rowsPerPage, customers.length)}</span> of{' '}
+            <span className="font-medium">{customers.length}</span> results
           </div>
+
+          <Stack spacing={2}>
+            <Pagination 
+              count={Math.ceil(customers.length / rowsPerPage)}
+              page={page}
+              onChange={handleChangePage}
+              color="primary"
+              shape="rounded"
+            />
+          </Stack>
         </div>
       </div>
     </div>
